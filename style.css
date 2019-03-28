@@ -33,7 +33,7 @@ p {
 .info-block {
   background-color: #333333;
   min-width: 320px;
-  width: 790px;
+  max-width: 790px;
   margin: 0 auto;
 }
 
@@ -53,11 +53,23 @@ p {
 
 .info-block__main {
   display: flex;
+  overflow-x: auto;
 }
 
 .info-block__movie {
-  width: 50%;
+  min-width: 50%;
   padding: 2rem 1rem;
+}
+
+@media screen and (max-width: 720px) {
+  .info-block__main {
+    align-items: center;
+    display: flex;
+  }
+  .info-block__movie {
+    min-width: 100%;
+    margin: 0 auto;
+  }
 }
 
 .info-block__top {
