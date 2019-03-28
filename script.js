@@ -119,7 +119,7 @@ const startScroll = () => {
           left: -parseInt(mainStyle.width) * 10,
           behavior: 'smooth'
         }),
-      HtmlElements.movies.length * switchTimer
+      HtmlElements.movies.length * switchTimer + 1000
     );
   } else {
     nextMovie = window.setInterval(
@@ -136,7 +136,7 @@ const startScroll = () => {
           left: -parseInt(mainStyle.width) * 5,
           behavior: 'smooth'
         }),
-      (HtmlElements.movies.length * switchTimer) / 2
+      (HtmlElements.movies.length * switchTimer) / 2 + 1000
     );
   }
 };
