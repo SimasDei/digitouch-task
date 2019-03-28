@@ -54,6 +54,7 @@ p {
 .info-block__main {
   display: flex;
   overflow-x: auto;
+  min-width: 320px;
 }
 
 .info-block__movie {
@@ -63,6 +64,7 @@ p {
 
 @media screen and (max-width: 720px) {
   .info-block__main {
+    margin: 0 auto;
     align-items: center;
     display: flex;
   }
@@ -77,6 +79,8 @@ p {
 }
 
 .info-block__image img {
+  width: 143px;
+  height: 92px;
   border: 1px solid #b1c4d0;
 }
 
@@ -88,6 +92,7 @@ p {
   padding-left: 1rem;
 }
 .info-block__details p {
+  text-transform: uppercase;
   color: #b1c4d0;
   font-size: 1rem;
 }
@@ -121,4 +126,10 @@ p {
 .info_block__description {
   color: #b1c4d0;
   font-size: 1.2rem;
+}
+
+.info-block__paragraph {
+  max-height: 5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
