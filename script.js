@@ -52,15 +52,17 @@ const getGenres = () =>
     });
 
 const getRandomPage = max => {
-  return Math.floor(Math.random() * Math.floor(10));
+  return Math.floor(Math.random() * Math.floor(max));
 };
 
 const fetchMovies = config => {
-  fetch(`${API.url}movie/top_rated?api_key=${API.key}&page=${getRandomPage()}`)
+  fetch(
+    `${API.url}movie/top_rated?api_key=${API.key}&page=${getRandomPage(10)}`
+  )
     .then(result => result.json())
     .then(data => {
       movies = data.results;
-      movies.splice(movies.length / 2, movies.length / 2);
+      movies.splice(movies.length / 2, movies.length / getRandomPage(2));
       renderMovies(movies, config);
       startScroll();
     });
@@ -104,7 +106,14 @@ const startScroll = () => {
     ...HtmlElements,
     movies: document.querySelectorAll('.info-block__movie')
   };
-  if (parseInt(mainStyle.width) < 720) {
+
+  if (parseInt(mainStyle.width <= 360)) {
+    stopScroll();
+    return;
+  } else if (
+    parseInt(mainStyle.width) < 720 &&
+    parseInt(mainStyle.width) > 360
+  ) {
     nextMovie = window.setInterval(
       () =>
         HtmlElements.main.scrollBy({
@@ -121,7 +130,7 @@ const startScroll = () => {
         }),
       HtmlElements.movies.length * switchTimer + 1000
     );
-  } else {
+  } else if (parseInt(mainStyle.width) > 720) {
     nextMovie = window.setInterval(
       () =>
         HtmlElements.main.scrollBy({
